@@ -5,7 +5,7 @@
 This repository contains a snapshot of the [Defects4J](https://github.com/rjust/defects4j) source code repository 
 for bug number 01 of the Google Closure compiler. In turns, the Defect4J repository contains a snapshot of the 
 [Google Closure compiler](https://github.com/google/closure-compiler) source code repository. The only code we 
-added to these two repositories is contained in the sushi/ folder.
+added to this third-party software is contained in the sushi/ folder.
 
 ## Checking out the project
 
