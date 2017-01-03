@@ -7,7 +7,7 @@ import java.util.List;
 
 import sushi.configure.Coverage;
 import sushi.configure.JBSEParameters;
-import sushi.configure.MinimizerParameters;
+import sushi.configure.MergerParameters;
 import sushi.configure.Options;
 import sushi.configure.ParametersModifier;
 import sushi.configure.ParseException;
@@ -60,7 +60,7 @@ public class Closure01Parameters extends ParametersModifier {
 	}	
 	
 	@Override
-	public void modify(MinimizerParameters p) {
+	public void modify(MergerParameters p) {
 		p.setBranchesToCover("com/google/javascript/jscomp/RemoveUnusedVars.*");
 	}
 
