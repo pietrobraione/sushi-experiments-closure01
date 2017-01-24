@@ -18,13 +18,6 @@ resolve begin
 {R_ANY} instanceof java/util/Map aliases nothing,
 {R_ANY} instanceof java/util/Map not null,
 
--- {R_ANY}/propListHead instanceof com/google/javascript/rhino/Node$PropListItem aliases nothing,
--- {R_ANY}/propListHead instanceof com/google/javascript/rhino/Node$PropListItem expands to nothing,
-
-
--- {R_ANY}/map/table/(.*)(/next)* instanceof java/util/HashMap$Entry expands to nothing,
-
-
 -- PARSE TREE INVARIANTS
 {R_ANY}/(first/|next/)*str instanceof java/lang/String not null, 
 {R_ANY}/(first/|next/)*str instanceof java/lang/String aliases nothing, 
