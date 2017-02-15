@@ -55,7 +55,7 @@ public class Closure01ParametersAccurate extends ParametersModifier {
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
 		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		
 
-		p.setDepthScope(500);
+		p.setDepthScope(200);
 		p.setCountScope(6000);
 	}	
 	
