@@ -19,7 +19,7 @@
 	<classpathentry kind="src" path="sushi-src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sushi-lib"/>
-	<classpathentry kind="lib" path="/sushi/lib/evosuite-shaded-1.0.3.jar"/>
-	<classpathentry kind="lib" path="/sushi/lib/jbse-lib.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jbse"/>
+	<classpathentry kind="lib" path="/sushi/evosuite/evosuite-shaded-1.0.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

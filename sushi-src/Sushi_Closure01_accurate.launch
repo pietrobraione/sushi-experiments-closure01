@@ -2,14 +2,15 @@
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <stringAttribute key="bad_container_name" value="/sushi/la"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/sushi/src/sushi/Main.java"/>
+<listEntry value="/sushi-master/src/main/java/sushi/Main.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="sushi.Main"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-params_modifier_path ../sushi-experiments-closure01/build/classes -params_modifier_class settings.Closure01ParametersAccurate"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="sushi"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-params_modifier_path ./build/classes -params_modifier_class settings.Closure01ParametersAccurate"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="sushi-master"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms6144m -Xmx6144m"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:sushi-experiments-closure01}"/>
 </launchConfiguration>

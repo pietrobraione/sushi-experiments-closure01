@@ -1,8 +1,9 @@
 package settings;
 
+import static settings.Settings.*;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
 
 import sushi.configure.Coverage;
@@ -19,17 +20,13 @@ public class Closure01ParametersPartial extends ParametersModifier {
 		p.setLogLevel(Level.INFO);
 
 		//Local configurations
-		p.setEvosuitePath(Paths.get(".", "lib", "evosuite-shaded-1.0.3.jar"));
-		p.setSushiLibPath(Paths.get("..", "sushi-lib", "bin"));
-		p.setZ3Path(Paths.get("/opt", "local", "bin", "z3"));
+		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setSushiLibPath(SUSHI_LIB_PATH);
+		p.setZ3Path(Z3_PATH);
 
 		//Target 
-		p.setClassesPath(
-				Paths.get("..", "sushi-experiments-closure01", "build/classes"), 
-				Paths.get("..", "sushi-experiments-closure01", "lib/guava.jar"),
-				Paths.get("..", "sushi-experiments-closure01", "build/lib/rhino.jar"),
-				Paths.get("..", "sushi-experiments", "lib", "jbse-lib.jar"));
-		p.setJREPath(Paths.get(".", "data", "jre", "rt.jar"));
+		p.setClassesPath(BIN_PATH, GUAVA_PATH, RHINO_PATH, JBSE_PATH);
+		p.setJREPath(JRE_PATH);
 		p.setTargetMethod("com/google/javascript/jscomp/AnalysisDriver", "(Lcom/google/javascript/rhino/Node;ZZZ)V", "driver_RemoveUnusedVars_process");
 
 		//Analysis params 
@@ -39,8 +36,8 @@ public class Closure01ParametersPartial extends ParametersModifier {
 		p.setCoverage(Coverage.BRANCHES);
 		
 		//Tmp out directories
-		p.setOutDirectory(Paths.get("..", "sushi-experiments-closure01", "sushi-test"));
-		p.setTmpDirectoryBase(Paths.get("..", "sushi-experiments-closure01", "sushi-out"));
+		p.setOutDirectory(OUT_PATH);
+		p.setTmpDirectoryBase(TMP_BASE_PATH);
 		
 		//Parallelism
 		p.setRedundanceEvosuite(1);
@@ -53,7 +50,7 @@ public class Closure01ParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile("../sushi-experiments-closure01/sushi-src/settings/closure_compiler_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH + "closure_compiler_partial.jbse", p);
 		
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
 		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		

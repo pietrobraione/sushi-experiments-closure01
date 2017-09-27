@@ -29,6 +29,8 @@ import com.google.javascript.rhino.IR;
 import com.google.javascript.rhino.Node;
 import com.google.javascript.rhino.Token;
 
+import jbse.meta.Analysis;
+
 import java.util.*;
 
 
@@ -387,7 +389,7 @@ class RemoveUnusedVars
       while ((lastArg = argList.getLastChild()) != null) {
         Var var = fnScope.getVar(lastArg.getString());
         if (!referenced.contains(var)) {
-            //Analysis.ass3rt(false);
+          /*SUSHI: Bug tracking */ AnalysisDriver.traversingBug01Location();
           argList.removeChild(lastArg);
           compiler.reportCodeChange();
         } else {

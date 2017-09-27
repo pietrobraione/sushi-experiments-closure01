@@ -5,6 +5,10 @@ import com.google.javascript.rhino.Node;
 import jbse.meta.Analysis;
 
 public class AnalysisDriver {
+	static int BUG01_EXEC_COUNT = 0;
+	static void traversingBug01Location() {
+			BUG01_EXEC_COUNT++;
+	}
 	public void driver_RemoveUnusedVars_process(Node root, boolean removeGlobals,
 		      boolean preserveFunctionExpressionNames,
 		      boolean modifyCallSites) {
@@ -24,6 +28,7 @@ public class AnalysisDriver {
 		 */
 		try{
 			rootBug.process(null, root/*, null*/);
+			Analysis.ass3rt(BUG01_EXEC_COUNT == 0);
 		} catch (Exception e) {
 			//Analysis.assume(false);
 		}
