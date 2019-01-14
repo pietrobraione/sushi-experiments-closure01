@@ -26,7 +26,6 @@ public class Closure01ParametersPartial extends ParametersModifier {
 
 		//Target 
 		p.setClassesPath(BIN_PATH, GUAVA_PATH, RHINO_PATH, JBSE_PATH);
-		p.setJREPath(JRE_PATH);
 		p.setTargetMethod("com/google/javascript/jscomp/AnalysisDriver", "(Lcom/google/javascript/rhino/Node;ZZZ)V", "driver_RemoveUnusedVars_process");
 
 		//Analysis params 
@@ -50,7 +49,7 @@ public class Closure01ParametersPartial extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "closure_compiler_partial.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_partial.jbse").toString(), p);
 		
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
 		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		

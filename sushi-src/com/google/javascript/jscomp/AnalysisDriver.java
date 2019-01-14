@@ -11,11 +11,7 @@ public class AnalysisDriver {
 	}
 	public void driver_RemoveUnusedVars_process(Node root, boolean removeGlobals,
 		      boolean preserveFunctionExpressionNames,
-		      boolean modifyCallSites) {
-		Analysis.assumeClassNotInitialized("com/google/common/collect/ImmutableSet");
-		Analysis.assumeClassNotInitialized("java/lang/AbstractStringBuilder");
-		Analysis.assumeClassNotInitialized("com/google/common/collect/EmptyImmutableList");
-		Analysis.assumeClassNotInitialized("com/google/common/collect/Iterators");
+		      boolean modifyCallSites) throws ClassNotFoundException {
 		
 		AbstractCompiler compiler = new StubCompiler();
 		RemoveUnusedVars rootBug = new RemoveUnusedVars(compiler, removeGlobals, preserveFunctionExpressionNames, modifyCallSites);

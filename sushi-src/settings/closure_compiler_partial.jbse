@@ -1,3 +1,12 @@
+init begin
+com/google/common/collect/ImmutableSet,
+--java/lang/AbstractStringBuilder,
+com/google/common/collect/EmptyImmutableList,
+com/google/common/collect/Iterators,
+com/google/javascript/jscomp/DefinitionsRemover$IncompleteDefinition, 
+com/google/javascript/jscomp/NodeUtil
+end
+
 resolve begin
 
 {R_ANY}/(first/|next/)*str instanceof java/lang/String expands to instanceof java/lang/String triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_gotStrExpand:{$REF}/{UP}, 

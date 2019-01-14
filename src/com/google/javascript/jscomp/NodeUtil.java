@@ -959,7 +959,7 @@ public final class NodeUtil {
 
     Node nameNode = callNode.getFirstChild();
     if (nameNode.isName() &&
-        /*SUSHI: CONSTRUCTORS_WITHOUT_SIDE_EFFECTS.contains(nameNode.getString())*/false) {
+        CONSTRUCTORS_WITHOUT_SIDE_EFFECTS.contains(nameNode.getString())) {
       return false;
     }
 
@@ -1011,13 +1011,13 @@ public final class NodeUtil {
     // Built-in functions with no side effects.
     if (nameNode.isName()) {
       String name = nameNode.getString();
-      if (/*SUSHI: BUILTIN_FUNCTIONS_WITHOUT_SIDEEFFECTS.contains(name)*/false) {
+      if (BUILTIN_FUNCTIONS_WITHOUT_SIDEEFFECTS.contains(name)) {
         return false;
       }
     } else if (nameNode.isGetProp()) {
       if (callNode.hasOneChild()
-          && /*SUSHI: OBJECT_METHODS_WITHOUT_SIDEEFFECTS.contains(
-                nameNode.getLastChild().getString())*/false) {
+          && OBJECT_METHODS_WITHOUT_SIDEEFFECTS.contains(
+                nameNode.getLastChild().getString())) {
         return false;
       }
 
@@ -1037,11 +1037,11 @@ public final class NodeUtil {
 
       if (compiler != null && !compiler.hasRegExpGlobalReferences()) {
         if (nameNode.getFirstChild().isRegExp()
-            && /*SUSHI: REGEXP_METHODS.contains(nameNode.getLastChild().getString())*/false) {
+            && REGEXP_METHODS.contains(nameNode.getLastChild().getString())) {
           return false;
         } else if (nameNode.getFirstChild().isString()
-            && /*SUSHI: STRING_REGEXP_METHODS.contains(
-                nameNode.getLastChild().getString())*/false) {
+            && STRING_REGEXP_METHODS.contains(
+                nameNode.getLastChild().getString())) {
           Node param = nameNode.getNext();
           if (param != null &&
               (param.isString() || param.isRegExp())) {

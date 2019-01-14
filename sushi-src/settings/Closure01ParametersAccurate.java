@@ -20,13 +20,12 @@ public class Closure01ParametersAccurate extends ParametersModifier {
 		p.setLogLevel(Level.DEBUG);
 
 		//Local configurations
-		p.setEvosuitePath(EVOSUITE_PATH);
+		p.setEvosuitePath(EVOSUITE_MOSA_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setZ3Path(Z3_PATH);
 
 		//Target 
 		p.setClassesPath(BIN_PATH, GUAVA_PATH, RHINO_PATH, JBSE_PATH);
-		p.setJREPath(JRE_PATH);
 		p.setTargetMethod("com/google/javascript/jscomp/AnalysisDriver", "(Lcom/google/javascript/rhino/Node;ZZZ)V", "driver_RemoveUnusedVars_process");
 
 		//Analysis params 
@@ -45,12 +44,14 @@ public class Closure01ParametersAccurate extends ParametersModifier {
 		
 		//Timeout
 		p.setGlobalBudget(7200);
+		
+		p.setUseMOSA(true);
 	}
 
 	@Override
 	public void modify(JBSEParameters p) 
 	throws FileNotFoundException, ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH + "closure_compiler_accurate.jbse", p);
+		loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_accurate.jbse").toString(), p);
 		
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
 		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		
