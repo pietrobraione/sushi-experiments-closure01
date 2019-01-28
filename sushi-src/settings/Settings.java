@@ -9,8 +9,8 @@ public final class Settings {
 	public static final Path Z3_PATH            = Paths.get("/opt", "local", "bin", "z3");
 	
 	//these are ok for everyone
-	public static final Path JBSE_PATH          = GIT_REPO_ROOT.resolve(Paths.get("sushi", "jbse", "target", "classes"));
-	public static final Path SUSHI_LIB_PATH     = GIT_REPO_ROOT.resolve(Paths.get("sushi", "runtime", "target", "classes"));
+	public static final Path JBSE_PATH          = GIT_REPO_ROOT.resolve(Paths.get("sushi", "jbse", "build", "classes", "java", "main"));
+	public static final Path SUSHI_LIB_PATH     = GIT_REPO_ROOT.resolve(Paths.get("sushi", "runtime", "build", "classes", "java", "main"));
 	public static final Path EVOSUITE_PATH      = GIT_REPO_ROOT.resolve(Paths.get("sushi", "evosuite", "evosuite-shaded-1.0.3.jar"));
 	public static final Path EVOSUITE_MOSA_PATH = GIT_REPO_ROOT.resolve(Paths.get("sushi", "evosuite", "evosuite-shaded-1.0.6-SNAPSHOT.jar"));
 	public static final Path BIN_PATH           = GIT_REPO_ROOT.resolve(Paths.get("sushi-experiments-closure01", "build", "classes"));
