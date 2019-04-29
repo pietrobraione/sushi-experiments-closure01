@@ -50,7 +50,7 @@ public class Closure01ParametersAccurate extends ParametersModifier {
 
 	@Override
 	public void modify(JBSEParameters p) 
-	throws FileNotFoundException, ParseException, IOException {
+	throws ParseException, IOException {
 		loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_accurate.jbse").toString(), p);
 		
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
