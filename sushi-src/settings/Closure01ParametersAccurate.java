@@ -2,7 +2,6 @@ package settings;
 
 import static settings.Settings.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -51,7 +50,7 @@ public class Closure01ParametersAccurate extends ParametersModifier {
 	@Override
 	public void modify(JBSEParameters p) 
 	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_accurate.jbse").toString(), p);
+		loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_accurate.jbse"), p);
 		
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
 		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		
