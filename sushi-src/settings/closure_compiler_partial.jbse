@@ -27,10 +27,10 @@ resolve begin
 
 -- n-ary tree shape
 
--- Node cannot alias anything but the previously expanded last
+-- first.next* cannot alias anything but the previously expanded last
 {R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)* instanceof com/google/javascript/rhino/Node aliases target {$R_ANY}.com/google/javascript/rhino/Node:last;
 
--- last may expand or alias max(first.next*): assume(last.next==null)
+-- last may expand or alias max(first.next*)
 {R_ANY}.com/google/javascript/rhino/Node:last instanceof com/google/javascript/rhino/Node aliases target {MAX}{$R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)*;
 {R_ANY}.com/google/javascript/rhino/Node:last.com/google/javascript/rhino/Node:next instanceof com/google/javascript/rhino/Node expands to nothing;
 {R_ANY}.com/google/javascript/rhino/Node:last.com/google/javascript/rhino/Node:next instanceof com/google/javascript/rhino/Node aliases nothing;
@@ -42,4 +42,5 @@ resolve begin
 {R_ANY}.com/google/javascript/rhino/Node:last.com/google/javascript/rhino/Node:parent instanceof com/google/javascript/rhino/Node not null;
 {R_ANY}.com/google/javascript/rhino/Node:last.com/google/javascript/rhino/Node:parent instanceof com/google/javascript/rhino/Node expands to nothing;
 {R_ANY}.com/google/javascript/rhino/Node:last.com/google/javascript/rhino/Node:parent instanceof com/google/javascript/rhino/Node aliases target {$R_ANY};
+
 resolve end
