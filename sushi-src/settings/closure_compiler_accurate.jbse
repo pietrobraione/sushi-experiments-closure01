@@ -28,6 +28,7 @@ resolve begin
 {R_ANY} instanceof java/util/Map not null;
 
 -- PARSE TREE INVARIANTS
+-- StringNode nodes have always a string
 {R_ANY}(.com/google/javascript/rhino/Node:first|.com/google/javascript/rhino/Node:next)*.com/google/javascript/rhino/Node$StringNode:str instanceof java/lang/String not null; 
 {R_ANY}(.com/google/javascript/rhino/Node:first|.com/google/javascript/rhino/Node:next)*.com/google/javascript/rhino/Node$StringNode:str instanceof java/lang/String aliases nothing; 
 {R_ANY}(.com/google/javascript/rhino/Node:first|.com/google/javascript/rhino/Node:next)*.com/google/javascript/rhino/Node$StringNode:str instanceof java/lang/String expands to instanceof java/lang/String triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_gotStrExpand:{$REF}.{UP}; 
@@ -39,11 +40,12 @@ resolve begin
 {R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)+ instanceof com/google/javascript/rhino/Node expands to instanceof com/google/javascript/rhino/Node triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_gotNextExpand:{$R_ANY};
 {R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)+ instanceof com/google/javascript/rhino/Node expands to instanceof com/google/javascript/rhino/Node$StringNode triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_gotNextExpand:{$R_ANY};
 
+-- COMMON PARSE TREE INVARIANTS
 -- first or last can be null: assume(first==last)
 {R_ANY}.com/google/javascript/rhino/Node:last instanceof com/google/javascript/rhino/Node null triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_handleLastNull:{$R_ANY};
 
--- first.next+ can be null: assume(last==lastChild)
-{R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)* instanceof com/google/javascript/rhino/Node null triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_handleChildrenListClosure:{$R_ANY}; 
+-- first.next* can be null: assume(last==lastChild)
+{R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)* instanceof com/google/javascript/rhino/Node null triggers com/google/javascript/rhino/Node:(Lcom/google/javascript/rhino/Node;)V:_handleChildrenListClosure:{$R_ANY};
 
 -- Node cannot alias anything but the previously expanded last
 {R_ANY}.com/google/javascript/rhino/Node:first(.com/google/javascript/rhino/Node:next)* instanceof com/google/javascript/rhino/Node aliases target {$R_ANY}.com/google/javascript/rhino/Node:last;
