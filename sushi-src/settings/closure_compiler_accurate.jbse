@@ -9,14 +9,21 @@ init end
 
 resolve begin
 
-{R_ANY}.{°}*:compiler instanceof com/google/javascript/jscomp/AbstractCompiler not null; 
-{R_ANY}.{°}*:compiler instanceof com/google/javascript/jscomp/AbstractCompiler aliases nothing; 
-{R_ANY}.{°}*:compiler instanceof com/google/javascript/jscomp/AbstractCompiler expands to instanceof com/google/javascript/jscomp/StubCompiler;
+-- Currently the AnalysisDriver is injecting this dependency, thus the
+-- following rules are useless
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars:compiler instanceof com/google/javascript/jscomp/AbstractCompiler not null; 
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars:compiler instanceof com/google/javascript/jscomp/AbstractCompiler aliases nothing; 
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars:compiler instanceof com/google/javascript/jscomp/AbstractCompiler expands to instanceof com/google/javascript/jscomp/StubCompiler;
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars$CallSiteOptimizer:compiler instanceof com/google/javascript/jscomp/AbstractCompiler not null; 
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars$CallSiteOptimizer:compiler instanceof com/google/javascript/jscomp/AbstractCompiler aliases nothing; 
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars$CallSiteOptimizer:compiler instanceof com/google/javascript/jscomp/AbstractCompiler expands to instanceof com/google/javascript/jscomp/StubCompiler;
+-- TODO should RemoveUnusedVars$CallSiteOptimizer:compiler be always an alias of the compiler in its container RemoveUnusedVars?
+{R_ANY}.com/google/javascript/jscomp/RemoveUnusedVars:codingConvention instanceof com/google/javascript/jscomp/CodingConvention expands to instanceof com/google/javascript/jscomp/ClosureCodingConvention;
+-- TODO: should codingConvention be not null?
+{R_ANY}.com/google/javascript/jscomp/CodingConvention$Proxy:nextConvention instanceof com/google/javascript/jscomp/CodingConvention expands to instanceof com/google/javascript/jscomp/CodingConventions$DefaultCodingConvention;
 
-{R_ANY}.{°}*:codingConvention instanceof com/google/javascript/jscomp/CodingConvention expands to instanceof com/google/javascript/jscomp/ClosureCodingConvention;
-{R_ANY}.{°}*:nextConvention instanceof com/google/javascript/jscomp/CodingConvention expands to instanceof com/google/javascript/jscomp/CodingConventions$DefaultCodingConvention;
+-- collections
 {R_ANY} instanceof com/google/common/collect/Multimap expands to instanceof com/google/common/collect/ArrayListMultimap;
-
 {R_ANY} instanceof java/util/List expands to instanceof java/util/ArrayList;
 {R_ANY} instanceof java/util/List aliases nothing;
 {R_ANY} instanceof java/util/List not null;

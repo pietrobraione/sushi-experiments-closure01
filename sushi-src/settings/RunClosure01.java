@@ -32,16 +32,17 @@ public class RunClosure01 {
     private static final String METHOD_CLASS      = "com/google/javascript/jscomp/AnalysisDriver"; 
     private static final String METHOD_DESCRIPTOR = "(Lcom/google/javascript/rhino/Node;ZZZ)V"; 
     private static final String METHOD_NAME       = "driver_RemoveUnusedVars_process"; 
-    private static final String OUT_FILE          = TMP_BASE_PATH + "runClosure01.txt";
+    private static final Path   OUT_FILE          = TMP_BASE_PATH.resolve("runClosure01.txt");
 
     private static void set(RunParameters p) throws ParseException, IOException {
     	loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_accurate.jbse"), p);
         p.addUserClasspath(BIN_PATH, GUAVA_PATH, RHINO_PATH, JBSE_PATH);
         p.setMethodSignature(METHOD_CLASS, METHOD_DESCRIPTOR, METHOD_NAME);
-        p.setOutputFileName(OUT_FILE);
+        p.setOutputFileName(OUT_FILE.toString());
         p.setDecisionProcedureType(DecisionProcedureType.Z3);
         p.setExternalDecisionProcedurePath(Z3_PATH);
         p.setShowDecisionProcedureInteraction(false);
+        p.setShowWarnings(true);
         p.setStepShowMode(StepShowMode.LEAVES);
         p.setStateFormatMode(StateFormatMode.TRACE);
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
@@ -57,7 +58,7 @@ public class RunClosure01 {
 		try {
 			sr = new SettingsReader(path);
 		} catch (jbse.apps.settings.ParseException e) {
-			throw new ParseException("File " + path +": " + e.getMessage());
+			throw new ParseException("File " + path + ": " + e.getMessage());
 		}
 		sr.fillRunnerParameters(p.getRunnerParameters());
 		sr.fillRulesLICS(p.getLICSRulesRepo());
