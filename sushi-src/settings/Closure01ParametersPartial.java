@@ -2,23 +2,18 @@ package settings;
 
 import static settings.Settings.*;
 
-import java.io.IOException;
-import java.util.List;
+import sushi.Coverage;
+import sushi.Level;
+import sushi.Options;
+import sushi.OptionsConfigurator;
 
-import sushi.configure.Coverage;
-import sushi.configure.JBSEParameters;
-import sushi.configure.MergerParameters;
-import sushi.configure.Options;
-import sushi.configure.ParametersModifier;
-import sushi.configure.ParseException;
-import sushi.logging.Level;
-
-public class Closure01ParametersPartial extends ParametersModifier {
+public class Closure01ParametersPartial implements OptionsConfigurator {
 	@Override
-	public void modify(Options p) {
+	public void configure(Options p) {
 		p.setLogLevel(Level.INFO);
 
 		//Local configurations
+		p.setJava8Path(JAVA8_HOME);
 		p.setEvosuitePath(EVOSUITE_PATH);
 		p.setSushiLibPath(SUSHI_LIB_PATH);
 		p.setZ3Path(Z3_PATH);
@@ -32,40 +27,25 @@ public class Closure01ParametersPartial extends ParametersModifier {
 		p.setEvosuiteBudget(2400);
 		p.setMinimizerBudget(300);
 		p.setCoverage(Coverage.BRANCHES);
+		p.setBranchesToCover("com/google/javascript/jscomp/RemoveUnusedVars.*");
+		p.setHEXFiles(SETTINGS_PATH.resolve("closure_compiler_partial.jbse"));
+		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
+		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		
+		p.setDepthScope(200);
+		p.setCountScope(6000);
 		
 		//Tmp out directories
-		p.setOutDirectory(OUT_PATH);
+		p.setOutDirPath(OUT_PATH);
 		p.setTmpDirectoryBase(TMP_BASE_PATH);
 		
-		//Parallelism
+		//Redundance and parallelism
 		p.setRedundanceEvosuite(1);
 		p.setParallelismEvosuite(20);
 		
+		//Evosuite
+		p.setAdditionalEvosuiteArgs("-Dobject_reuse_probability=0.8 -Delite=5");
+
 		//Timeout
 		p.setGlobalBudget(7200);
-	}
-
-	@Override
-	public void modify(JBSEParameters p) 
-	throws ParseException, IOException {
-		loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_partial.jbse"), p);
-		
-		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
-		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		
-
-		p.setDepthScope(200);
-		p.setCountScope(6000);
-	}	
-	
-	@Override
-	public void modify(MergerParameters p) {
-		p.setBranchesToCover("com/google/javascript/jscomp/RemoveUnusedVars.*");
-	}
-
-
-	@Override
-	public void modify(List<String> p) {
-		p.add("-Dobject_reuse_probability=0.8");
-		p.add("-Delite=5");
 	}
 }

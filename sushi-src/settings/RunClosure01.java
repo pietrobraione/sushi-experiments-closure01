@@ -19,7 +19,7 @@ import jbse.apps.run.RunParameters.DecisionProcedureType;
 import jbse.apps.run.RunParameters.StateFormatMode;
 import jbse.apps.run.RunParameters.StepShowMode;
 import jbse.apps.settings.SettingsReader;
-import sushi.configure.ParseException;
+import sushi.ParseException;
 
 public class RunClosure01 {
     public static void main(String[] args) throws FileNotFoundException, ParseException, IOException	{
@@ -38,13 +38,13 @@ public class RunClosure01 {
     	loadHEXFile(SETTINGS_PATH.resolve("closure_compiler_accurate.jbse"), p);
         p.addUserClasspath(BIN_PATH, GUAVA_PATH, RHINO_PATH, JBSE_PATH);
         p.setMethodSignature(METHOD_CLASS, METHOD_DESCRIPTOR, METHOD_NAME);
-        p.setOutputFileName(OUT_FILE.toString());
+        p.setOutputFilePath(OUT_FILE.toString());
         p.setDecisionProcedureType(DecisionProcedureType.Z3);
         p.setExternalDecisionProcedurePath(Z3_PATH);
         p.setShowDecisionProcedureInteraction(false);
         p.setShowWarnings(true);
         p.setStepShowMode(StepShowMode.LEAVES);
-        p.setStateFormatMode(StateFormatMode.TRACE);
+        p.setStateFormatMode(StateFormatMode.PATH);
 		p.setHeapScope("com/google/javascript/rhino/Node", 4);		
 		p.setHeapScope("com/google/javascript/rhino/Node$StringNode", 2);		
 		p.setDepthScope(200);
